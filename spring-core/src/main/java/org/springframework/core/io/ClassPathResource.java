@@ -77,7 +77,9 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	 */
 	public ClassPathResource(String path, @Nullable ClassLoader classLoader) {
 		Assert.notNull(path, "Path must not be null");
+		//清除冗余路径如  /dir/../file --> /file
 		String pathToUse = StringUtils.cleanPath(path);
+		//   如果开头带 "/" 则去除 取得相对路径 如: org/springframework/core/io/nonexistent.xml
 		if (pathToUse.startsWith("/")) {
 			pathToUse = pathToUse.substring(1);
 		}

@@ -1,6 +1,7 @@
 buildscript {
 	repositories {
 		maven { url "https://repo.spring.io/plugins-release" }
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 	}
 	dependencies {
 		classpath("io.spring.gradle:propdeps-plugin:0.0.9.RELEASE")
@@ -210,9 +211,11 @@ configure(subprojects - project(":spring-build-src")) { subproject ->
 		}
 	}
 
+	tasks.withType(JavaCompile){
+		options.encoding = "UTF-8"
+	}
 	javadoc {
 		description = "Generates project-level javadoc for use in -javadoc jar"
-
 		options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
 		options.author = true
 		options.header = project.name

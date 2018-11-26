@@ -603,6 +603,12 @@ public abstract class StringUtils {
 	}
 
 	/**
+	 *将给定的相对路径应用于给定的Java资源路径，
+	 *假设标准Java文件夹分离（即“/”分隔符）。
+	 * @param path 开始的路径（通常是完整的文件路径）
+	 * @param relativePath 要应用的相对路径
+	 *（相对于上面的完整文件路径）
+	 * @return应用相对路径产生的完整文件路径
 	 * Apply the given relative path to the given Java resource path,
 	 * assuming standard Java folder separation (i.e. "/" separators).
 	 * @param path the path to start from (usually a full file path)
@@ -625,6 +631,7 @@ public abstract class StringUtils {
 	}
 
 	/**
+	 * 简化如 /abc/../abc/file --> /abc/file 冗余路径
 	 * Normalize the path by suppressing sequences like "path/.." and
 	 * inner simple dots.
 	 * <p>The result is convenient for path comparison. For other uses,
@@ -638,10 +645,10 @@ public abstract class StringUtils {
 		}
 		String pathToUse = replace(path, WINDOWS_FOLDER_SEPARATOR, FOLDER_SEPARATOR);
 
-		// Strip prefix from path to analyze, to not treat it as part of the
-		// first path element. This is necessary to correctly parse paths like
-		// "file:core/../core/io/Resource.class", where the ".." should just
-		// strip the first "core" directory while keeping the "file:" prefix.
+		//从路径中去除前缀​​以进行分析，而不是将其视为一部分
+		//第一个路径元素这对于正确解析像这样的路径是必要的
+		//“file：core /../ core / io / Resource.class”，其中“..”应该只是
+		//在保留“file：”前缀的同时删除第一个“核心”目录。
 		int prefixIndex = pathToUse.indexOf(':');
 		String prefix = "";
 		if (prefixIndex != -1) {

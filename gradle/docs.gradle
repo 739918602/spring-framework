@@ -24,6 +24,8 @@ task api(type: Javadoc) {
 			it.tasks.getByName("jar")
 		}
 	}
+	options.encoding = "UTF-8";
+	options.charSet = "UTF-8";
 	options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
 	options.author = true
 	options.header = rootProject.description

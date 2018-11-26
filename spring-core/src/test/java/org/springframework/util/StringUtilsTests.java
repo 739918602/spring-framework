@@ -399,6 +399,7 @@ public class StringUtilsTests {
 		assertEquals("file:../", StringUtils.cleanPath("file:./../"));
 		assertEquals("file:../", StringUtils.cleanPath("file:.././"));
 		assertEquals("file:///c:/path/the%20file.txt", StringUtils.cleanPath("file:///c:/some/../path/the%20file.txt"));
+		assertEquals("file:///E:/workspace/apidoc/index.html", StringUtils.cleanPath("file:///E:/workspace/apidoc/index.html"));
 	}
 
 	@Test
