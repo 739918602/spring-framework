@@ -77,7 +77,8 @@ public interface Resource extends InputStreamSource {
 	}
 
 	/**
-	 * 资源的句柄是否被 Stream打开
+	 * 指示此资源是否表示具有开放流的句柄
+	 * 如果资源返回true 则只可被读取一次 比如 InputStreamResource 再次读取会抛错
 	 * Indicate whether this resource represents a handle with an open stream.
 	 * If {@code true}, the InputStream cannot be read multiple times,
 	 * and must be read and closed to avoid resource leaks.
